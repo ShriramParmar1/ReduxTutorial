@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { InNum, DeNum } from "./actions";
 
 function App() {
+  const mystate = useSelector((state) => state.changTheNum);
+  const dispatch = useDispatch();
+  const handleIncrement = () => {
+    dispatch(InNum(50));
+  };
+  const handleDecrement = () => {
+    dispatch(DeNum(5));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="heading">Counter App</h1>
+      <div className="counter">
+        <button className="button" onClick={handleIncrement}>
+          Increment
+        </button>
+
+        <span className="count">{mystate}</span>
+        <button className="button" onClick={handleDecrement}>
+          Decrement
+        </button>
+      </div>
     </div>
   );
 }
